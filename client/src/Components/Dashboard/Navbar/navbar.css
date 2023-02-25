@@ -1,0 +1,15 @@
+.navbar {
+    width: 100%;
+    height: 148px;
+    background-color: #ccc;
+    backdrop-filter: blur(16px);
+    z-index: 2;
+
+}
+
+.navbar-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 48px 16px;
+}

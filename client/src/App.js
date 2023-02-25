@@ -1,11 +1,14 @@
+import { Routes, Route } from 'react-router-dom'
+import NormalAuth from './Components/Authentication/NormalAuth'
+import Dashboard from './Components/Dashboard/Dashboard'
 
-
-function App() {
+function App () {
   return (
-    <div className="App">
-      
-    </div>
-  );
+    <Routes>
+      <Route path='/user' element={<NormalAuth />} />
+      <Route exact path='/dashboard' element={<Dashboard />} />
+    </Routes>
+  )
 }
 
-export default App;
+export default App
