@@ -1,4 +1,15 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+
+export const OuterDiv = styled.div`
+  background: #f6f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  height: 100vh;
+  margin: -20px 0 50px;
+`
 
 export const Container = styled.div`
   background-color: #fff;
@@ -64,6 +75,7 @@ export const CheckBoxContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  align-items: center;
 `
 
 export const OptionsText = styled.p`
