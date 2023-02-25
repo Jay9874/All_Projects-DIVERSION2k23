@@ -59,6 +59,12 @@ export const Title = styled.h1`
   margin: 0;
 `
 
+export const Error = styled.span`
+  font-size: 15px;
+  color: red;
+  margin: 0;
+`
+
 export const Input = styled.input`
   background-color: #eee;
   border: none;

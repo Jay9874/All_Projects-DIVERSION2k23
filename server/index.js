@@ -24,10 +24,12 @@ app.get("/", (req, res) => {
 // Routes 
 const  user = require('./routes/user');
 const project = require('./routes/all_pro');
+const auth = require('./routes/auth');
 
 // Use routes
 app.use("/api", user);
 app.use("/api", project);
+app.use("/api", auth);
 
 // Rest call response
 app.use((req, res, next) => {

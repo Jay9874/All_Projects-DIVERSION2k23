@@ -31,10 +31,11 @@ const AdminSchema = new mongoose.Schema({
         default: true,
     },
     adminAt: {
-        type: UniversitySchema,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'University',
     }
 })
 
-const Admin = mongoose.model('Admin', StudentSchema);
+const Admin = mongoose.model('Admin', AdminSchema);
 module.exports = Admin;
 module.exports = AdminSchema;

@@ -2,10 +2,6 @@ import './navbar.css'
 import { Link } from 'react-router-dom'
 import Avatar from '../Avatar/Avatar'
 // import CurrUser = require("../../Utils/CurrUser");
-import { Button } from '../../Authentication/AuthStyles'
-
-
-
 
 export default function Navbar () {
   return (
@@ -26,7 +22,7 @@ export default function Navbar () {
               }
             ) : (
               <Link to='/user'>
-                <Button>Sign In</Button>
+                <button className='auth-button'>Sign In</button>
               </Link>
             )}
           </div>
