@@ -3,10 +3,10 @@ const {ProfileLinkSchema} = require('./profile_link');
 const {UniversitySchema} = require('./university');
 
 const AdminSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: ['true', 'Please add a username'],
-    },
+    // username: {
+    //     type: String,
+    //     required: ['true', 'Please add a username'],
+    // },
     email: {
         type: String,
         required: ['true', "Please add student's email address"],
@@ -15,27 +15,25 @@ const AdminSchema = new mongoose.Schema({
         type: String,
         require: ['true', 'Please add a password'],
     },
-    firstname:{
-        type: String,
-        required: ['true', "Please add student's first name"],
-    },
-    lastname: {
-        type: String,
-        required: ['true', "Please add student's last name"],
-    },
-    profiles: {
-        type: [ProfileLinkSchema],
-    },
-    writeAccess: {
-        type: Boolean,
-        default: true,
-    },
-    adminAt: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'University',
-    }
+    // firstname:{
+    //     type: String,
+    //     required: ['true', "Please add student's first name"],
+    // },
+    // lastname: {
+    //     type: String,
+    //     required: ['true', "Please add student's last name"],
+    // },
+    // profiles: {
+    //     type: [ProfileLinkSchema],
+    // },
+    // writeAccess: {
+    //     type: Boolean,
+    //     default: true,
+    // },
+    // adminAt: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'University',
+    // }
 })
 
-const Admin = mongoose.model('Admin', AdminSchema);
-module.exports = Admin;
-module.exports = AdminSchema;
+module.exports = mongoose.model('Admin', AdminSchema);

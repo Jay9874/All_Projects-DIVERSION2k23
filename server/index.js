@@ -37,6 +37,7 @@ app.use((req, res, next) => {
   });
 
 
+
 //Connect to the database before listening
 connectDB().then(() => {
     app.listen(PORT, () => {

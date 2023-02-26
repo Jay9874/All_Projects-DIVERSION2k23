@@ -1,4 +1,33 @@
 .dashboard {
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
+}
+
+.main-flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-section {
+    height: 80px;
+}
+.sidebar-container {
+    width: 240px;
+    height: calc(100vh - 110px);
+}
+
+.main-container {
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.main-section {
+    margin-top: 110px;
+    width: 100%;
+    height: calc(100vh - 80px);
 }

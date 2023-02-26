@@ -11,10 +11,17 @@ export default function NormalAuth () {
 
   const submitForm = async () => {
     setError("");
-    if(email && password && userType){
+    if(email && password){
       await axios.post('http://localhost:8080/api/login', { email, password, userType })
       .then(res => {
         console.log(res.data);
+        if(res.data.user === 'admin'){
+          window.location.href = '/admin'
+        } else if(res.data.user === 'student'){
+          window.location.href = '/dashboard'
+        } else {
+          setError("Try again!");
+        }
         setPassword('');
         setEmail('');
       })
