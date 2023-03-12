@@ -2,33 +2,36 @@ import { useState } from 'react'
 import * as Styles from './AuthStyles'
 import axios from 'axios'
 
-
-export default function NormalAuth () {
+export default function NormalAuth ({ handleUser }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [userType, setUserType] = useState("student");
-  const [error, setError] = useState("");
+  const [userType, setUserType] = useState('student')
+  const [error, setError] = useState('')
+  const [newUser, setNewUser] = useState({})
 
   const submitForm = async () => {
-    setError("");
-    if(email && password){
-      await axios.post('http://localhost:8080/api/login', { email, password, userType })
-      .then(res => {
-        console.log(res.data);
-        if(res.data.user === 'admin'){
-          window.location.href = '/admin'
-        } else if(res.data.user === 'student'){
-          window.location.href = '/dashboard'
-        } else {
-          setError("Try again!");
-        }
-        setPassword('');
-        setEmail('');
-      })
-      .catch(err => {
-        console.log(err.message);
-        setError("Try again!")
-      })
+    setError('')
+    if (email && password) {
+      await axios
+        .post('http://localhost:8080/api/login', { email, password, userType })
+        .then(res => {
+          setNewUser(res.data)
+          console.log(res.data)
+          const { user} = res.data
+          if (user === 'admin') {
+            window.location.href = '/admin'
+          } else if (user === 'student') {
+            window.location.href = '/dashboard'
+          } else {
+            setError('Seems like Credentials mismatched..')
+          }
+          setPassword('')
+          setEmail('')
+        })
+        .catch(err => {
+          console.log(err.message)
+          setError('Seems like Credentials mismatched..')
+        })
     }
   }
 
@@ -38,8 +41,8 @@ export default function NormalAuth () {
         <Styles.SignInContainer>
           <Styles.Form
             onSubmit={e => {
-              e.preventDefault();
-              submitForm();
+              e.preventDefault()
+              submitForm()
             }}
           >
             <Styles.Title>Log In</Styles.Title>
@@ -58,14 +61,16 @@ export default function NormalAuth () {
             <Styles.OptionText>Signin as:</Styles.OptionText>
             <Styles.CheckBoxContainer>
               <Styles.OptionsText>Student</Styles.OptionsText>
-              <Styles.Input type='checkbox'
-                checked={userType === "student"}
-                onChange={() => setUserType("student")}
+              <Styles.Input
+                type='checkbox'
+                checked={userType === 'student'}
+                onChange={() => setUserType('student')}
               />
               <Styles.OptionsText>Admin</Styles.OptionsText>
-              <Styles.Input type='checkbox'
-                checked={userType === "admin"}
-                onChange={() => setUserType("admin")}
+              <Styles.Input
+                type='checkbox'
+                checked={userType === 'admin'}
+                onChange={() => setUserType('admin')}
               />
             </Styles.CheckBoxContainer>
             <Styles.Button>Sign In</Styles.Button>

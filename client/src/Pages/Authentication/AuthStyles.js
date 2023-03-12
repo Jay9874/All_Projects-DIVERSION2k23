@@ -56,7 +56,7 @@ export const Form = styled.form`
 
 export const Title = styled.h1`
   font-weight: bold;
-  margin: 0;
+  margin: 0 auto;
 `
 
 export const Error = styled.span`
@@ -123,14 +123,12 @@ export const Anchor = styled.a`
   }
 `
 export const OverlayContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
+  width: 100%;
   height: 100%;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out;
-  z-index: 100;
+  margin-left: 210px;
+  @media (max-width: 768px) {
+    font-size: 
+  }
 `
 
 export const Overlay = styled.div`

@@ -1,9 +1,9 @@
-import aerospace from '../../../assets/images/aerospace.jpg';
-import mechanics from '../../../assets/images/mechanics.jpg';
-import programming from '../../../assets/images/programming.jpg';
-import robo from '../../../assets/images/robo.jpg';
-import science from '../../../assets/images/science.jpg';
-import aerodynamics from '../../../assets/images/aerodyanamics.jpeg';
+import aerospace from '../../assets/images/aerospace.jpg';
+import mechanics from '../../assets/images/mechanics.jpg';
+import programming from '../../assets/images/programming.jpg';
+import robo from '../../assets/images/robo.jpg';
+import science from '../../assets/images/science.jpg';
+import aerodynamics from '../../assets/images/aerodyanamics.jpeg';
 
 
 const data = [

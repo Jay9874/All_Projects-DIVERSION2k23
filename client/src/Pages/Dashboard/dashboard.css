@@ -15,12 +15,12 @@
 }
 .sidebar-container {
     width: 240px;
-    height: calc(100vh - 110px);
+    height: calc(100vh - 180px);
 }
 
 .main-container {
     width: 100%;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 180px);
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -29,5 +29,5 @@
 .main-section {
     margin-top: 110px;
     width: 100%;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 180px);
 }

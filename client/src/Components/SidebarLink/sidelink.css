@@ -1,9 +1,15 @@
-.link:hover {
-    background-color: rgb(231, 235, 240);
+.link{
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
 
+.link-inactive:hover {
+    background-color: rgb(231, 235, 240);
+}
+
+.active {
+    background-color: #e8f0fe;
+}
 
 .link-item {
     text-decoration: none;

@@ -1,10 +1,15 @@
 import './dashboard.css'
-import Navbar from './Navbar/Navbar'
-import Sidebar from './Sidebar/Sidebar'
+import { useState } from 'react'
+import Navbar from '../../Components/Navbar/Navbar'
+import Sidebar from '../../Components/Sidebar/Sidebar'
 import Main from './Main/Main'
 
-export default function Dashboard () {
-
+export default function Dashboard ({loggedUser}) {
+  const [view, setView] = useState('allProject');
+  console.log("hello world")
+  function changeView({name}){
+    setView(name);
+  }
 
   const sidebarLinks = [
       {
@@ -20,6 +25,11 @@ export default function Dashboard () {
       {
         name: 'Mechanics',
         url: '/mechanics',
+        icon: 'precision_manufacturing'
+      },
+      {
+        name: 'Electronics',
+        url: '/electronics',
         icon: 'precision_manufacturing'
       },
       { name: 'Robotics', url: '/robotics', icon: 'smart_toy' },
@@ -47,7 +57,10 @@ export default function Dashboard () {
               />
             </div>
             <div className='flex-item main-container'>
-              <Main />
+              <Main 
+                onViewChange={changeView}
+                view={view}
+              />
             </div>
           </div>
         </section>

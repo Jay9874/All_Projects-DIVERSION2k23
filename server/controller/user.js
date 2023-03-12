@@ -6,6 +6,7 @@ const Student = require("../models/student");
 
 // Get request
 exports.getAllStudent = (req, res) => {
+    const {id} = req.params;
     Student.find()
         .then((student) => {
             res.json(student);

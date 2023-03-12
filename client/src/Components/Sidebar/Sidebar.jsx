@@ -7,9 +7,10 @@ import SideLink from '../SidebarLink/SideLink'
 
 
 
-export default function Sidebar ({sideLinks}) {
-  function creatLink ({ name, url , icon}, indx) {
-    return <SideLink key={indx} icon={icon} name={name} link={url} />
+export default function Sidebar ({onChange, sideLinks}) {
+
+  function creatLink (props, indx) {
+    return <SideLink  key={indx} onChange={onChange} props={props} />
   }
 
   return (

@@ -22,7 +22,7 @@ export default function Navbar () {
                     /> */
               }
             ) : (
-              <Link to='/user'>
+              <Link to='/login'>
                 <Button variant='outlined' size='large'>
                   Login
                 </Button>
