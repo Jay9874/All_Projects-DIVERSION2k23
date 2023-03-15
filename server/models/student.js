@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
-const { ProfileLinkSchema } = require('./profile_link')
-const { UniversitySchema } = require('./university')
-const { University } = require('./university')
+const encrypt = require('mongoose-encryption')
+
+
+const secret = process.env.ENCRYPTION_KEY
 
 const StudentSchema = mongoose.Schema({
   first_name: {
@@ -25,7 +26,8 @@ const StudentSchema = mongoose.Schema({
     required: [true, 'Password is required']
   },
   profiles: {
-    type: [ProfileLinkSchema]
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'ProfileLink'
   },
   writeAccess: {
     type: Boolean,
@@ -33,27 +35,18 @@ const StudentSchema = mongoose.Schema({
   },
   studentOf: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Admin'
+    ref: 'Admin',
+    required: [true, 'Please add a admin']
   },
   studentAt: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'University'
+    ref: 'University',
+    required: [true, 'Please add a university']
   }
-})
+}, { timestamps: true })
 
-const Student = mongoose.model('Student', StudentSchema);
-const Jay = new Student({
-  first_name: "Jay Prakash",
-  last_name: "Sharma",
-  username: "jay9874",
-  email: "jayprakashsharma225@gmail.com",
-  password: "jay9874",
-})
-// Jay.save((err)=> {
-//   if(err) return handleError(err);
-//   console.log("created a new student.");
-// })
+StudentSchema.plugin(encrypt, { secret: secret, encryptedFields: ['password'] })
 
+const Student = mongoose.model('Student', StudentSchema)
 
-
-module.exports = mongoose.model('Student', StudentSchema)
+module.exports = Student

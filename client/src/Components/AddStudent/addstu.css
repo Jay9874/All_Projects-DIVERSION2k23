@@ -1,0 +1,27 @@
+.addstudent-container{
+    padding: 10px;
+}
+
+.addstudent-form{
+    padding: 20px;
+}
+.form-control{
+    width: 200px;
+    margin: 8px 0 20px;
+    padding: 10px 15px
+}
+
+label{
+    display: block;
+}
+
+.btn{
+    width: 200px;
+    margin: 0 0 20px;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

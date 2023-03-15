@@ -1,0 +1,25 @@
+{
+  "short_name": "Diversion 2K23",
+  "name": "Project for Diversion 2K23",
+  "icons": [
+    {
+      "src": "all_project.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "all_project.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "all_project.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#00FFFF",
+  "background_color": "#ffffff"
+}

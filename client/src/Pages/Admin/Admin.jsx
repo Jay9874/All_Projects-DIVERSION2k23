@@ -9,8 +9,6 @@ export default function AdminHome ({ loggedUser }) {
   const [user, setUser] = useState(loggedUser)
   const [uni, setUni] = useState({})
 
-  console.log(loggedUser)
-
   const [view, setView] = useState('addProject')
 
   function changeView (currView) {
@@ -22,16 +20,6 @@ export default function AdminHome ({ loggedUser }) {
     userId: loggedUser
   }
 
-  useEffect(() => {
-    const fetchStudents = async () => {
-      const response = await axios.get('http://localhost/api/getuser', {
-        queryBody
-      })
-      const newData = await response.json()
-      setFellows(newData)
-    }
-    fetchStudents()
-  })
 
   const sidebarLinks = [
     {

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 // Connect to the database
 const db = process.env.MONGO_URI;
+
 const connectDB = async () => {
     try{
         mongoose.set('strictQuery', false);

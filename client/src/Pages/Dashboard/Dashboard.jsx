@@ -4,9 +4,8 @@ import Navbar from '../../Components/Navbar/Navbar'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Main from './Main/Main'
 
-export default function Dashboard ({loggedUser}) {
+export default function Dashboard ({loggedUser, handleUser}) {
   const [view, setView] = useState('allProject');
-  console.log("hello world")
   function changeView({name}){
     setView(name);
   }
@@ -47,7 +46,10 @@ export default function Dashboard ({loggedUser}) {
     <div className='dashboard'>
       <div className='dashboard__container'>
         <section className='nav-section'>
-          <Navbar />
+          <Navbar 
+            loggedUser={loggedUser}
+            handleUser={handleUser}
+          />
         </section>
         <section className='main-section'>
           <div className='main-flex-container'>

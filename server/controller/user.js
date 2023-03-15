@@ -1,6 +1,9 @@
 ////////////////// Require all the packages /////////////////////
 const Student = require("../models/student");
+const Admin = require("../models/admin");
 
+const bcrypt = require("bcrypt");
+const bodyParser = require("body-parser");
 // /////////// Exporting all the controller functions ////////////////
 
 
@@ -19,18 +22,44 @@ exports.getAllStudent = (req, res) => {
 };
 
 // Post request
-exports.postCreateStudent = (req, res) => {
-    Student.create(req.body)
-        .then((data) => {
-            res.json({message: "Project created successfully!", data});
-        })
-        .catch((err) => 
-            res.status(400).json({
-                message: "unable to add keep",
-                error: err.message,
-            })
-        );
+exports.postCreateStudent = async(req, res) => {
+    const user = req.body;
+    const takenUsername = await Student.findOne({username: user.username});
+    const takenEmail = await Student.findOne({email: user.email});
+    if(takenUsername || takenEmail) {
+        return res.status(400).json({message: "Username or Email already taken!"});
+    }
+    user.password = await bcrypt.hash(user.password, 10);
+    const newStudent = new Student(user);
+    newStudent.save((err, student) => {
+        if(err) {
+            return res.status(400).json({message: "Unable to save student to DB", error: err.message});
+        }
+        res.json({message: "Student saved successfully", student});
+    });
+
 };
+
+exports.postCreateAdmin = async(req, res) => {
+    const user = req.body;
+    console.log(user)
+    // res.status(200).json({message: "Admin saved successfully", user});
+    const takenUsername = await Admin.findOne({username: user.username});
+    const takenEmail = await Admin.findOne({email: user.email});
+
+    if(takenUsername || takenEmail) {
+        return res.status(400).json({message: "Username or Email already taken!"});
+    }
+    user.password = await bcrypt.hash(user.password, 10);
+    const newAdmin = new Admin(user);
+    newAdmin.save((err, admin) => {
+        if(err) {
+            return res.status(400).json({message: "Unable to save admin to DB"});
+        }
+        res.json({message: "Admin saved successfully", admin});
+    });
+};
+
 
 // Put request
 exports.putUpdateStudent = (req, res) => {

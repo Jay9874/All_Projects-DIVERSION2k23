@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './createproject.css'
 import MultipleSelectChip from '../MultipleSelect/MultiSelect'
 
@@ -23,11 +23,19 @@ export default function CreateProject () {
   ]
   const [members, setMembers] = React.useState([])
 
-  // const fetchMembers = async () => {
-  //   const response = await fetch('http://localhost:8080/api/student')
-  //   const data = await response.json()
-  //   setMembers(data)
-  // }
+  useEffect(() => {
+    const response = async () => {
+      await fetch('http://localhost:8080/api/user', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const data = await response.json()
+      console.log('data: ', data)
+      setMembers(data)
+    }
+  }, [])
 
   const handleChange = e => {
     setProject({ ...project, [e.target.name]: e.target.value })
@@ -101,7 +109,7 @@ export default function CreateProject () {
             onChange={handleChange}
           />
         </div>
-
+              {/* <MultipleSelectChip />   */}
         <div className='form-group team-select-container'>
           <label htmlFor='projectTeam'>Project Team</label>
           <select
@@ -125,7 +133,7 @@ export default function CreateProject () {
             type='text'
             className='form-control'
             id='projectTeam'
-            placeholder='Project Team'
+            placeholder='University Name'
             onChange={handleChange}
           />
         </div>

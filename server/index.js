@@ -3,6 +3,9 @@ const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
 const path = require('path');
+const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 const { connect } = require('http2');
 const { readdirSync } = require("fs");
 
@@ -11,6 +14,12 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 app.use(express.json());
 app.use(cors());
+const urlEncodedParser = bodyParser.urlencoded({ extended: false });
+app.use(bodyParser.json(), urlEncodedParser);
+
+app.use(express.static(path.join(__dirname, "../client", "build")));
+
+
 
 
 // On Backend Call at "/"
@@ -32,8 +41,8 @@ app.use("/api", project);
 app.use("/api", auth);
 
 // Rest call response
-app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client", "build", "index.html"));
   });
 
 

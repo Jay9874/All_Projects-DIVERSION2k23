@@ -1,39 +1,86 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as Styles from './AuthStyles'
 import axios from 'axios'
 
 export default function NormalAuth ({ handleUser }) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [userType, setUserType] = useState('student')
+  const [user, setUser] = useState({
+    email: '',
+    password: ''
+  })
   const [error, setError] = useState('')
-  const [newUser, setNewUser] = useState({})
+  const navigate = useNavigate()
+  const [token, setToken] = useState('')
+
+  function handleChange (e) {
+    const { name, value } = e.target
+    setUser(prevUser => {
+      return {
+        ...prevUser,
+        [name]: value
+      }
+    })
+  }
 
   const submitForm = async () => {
     setError('')
-    if (email && password) {
-      await axios
-        .post('http://localhost:8080/api/login', { email, password, userType })
+    const newUser = {
+      email: user.email,
+      password: user.password,
+      userType: userType
+    }
+    fetch('http://localhost:8080/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        handleUser(data)
+        localStorage.setItem('token', data.token)
+        const { userType } = data
+        if (userType === 'admin') {
+          navigate('/admin')
+        } else if (userType === 'student') {
+          navigate('/dashboard')
+        } else {
+          setError('Seems like Credentials mismatched..')
+        }
+      })
+      .catch(err => {
+        console.log(err.message)
+        setError('Seems like Credentials mismatched..')
+      })
+  }
+
+  useEffect(() => {
+    if (token) {
+      axios
+        .get('http://localhost:8080/api/isUserAuth', {
+          headers: {
+            'x-access-token': localStorage.getItem('token')
+          }
+        })
         .then(res => {
-          setNewUser(res.data)
-          console.log(res.data)
-          const { user} = res.data
-          if (user === 'admin') {
-            window.location.href = '/admin'
-          } else if (user === 'student') {
-            window.location.href = '/dashboard'
+          const { userType } = res.data
+          if (userType === 'admin') {
+            navigate('/admin')
+          } else if (userType === 'student') {
+            navigate('/dashboard')
           } else {
             setError('Seems like Credentials mismatched..')
           }
-          setPassword('')
-          setEmail('')
         })
         .catch(err => {
           console.log(err.message)
           setError('Seems like Credentials mismatched..')
         })
     }
-  }
+  }, [])
 
   return (
     <Styles.OuterDiv>
@@ -48,14 +95,16 @@ export default function NormalAuth ({ handleUser }) {
             <Styles.Title>Log In</Styles.Title>
             <Styles.Input
               type='email'
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              value={user.email}
+              name='email'
+              onChange={handleChange}
               placeholder='Email'
             />
             <Styles.Input
               type='password'
-              value={password}
-              onChange={e => setPassword(e.target.value)}
+              value={user.password}
+              name='password'
+              onChange={handleChange}
               placeholder='Password'
             />
             <Styles.OptionText>Signin as:</Styles.OptionText>
@@ -64,13 +113,15 @@ export default function NormalAuth ({ handleUser }) {
               <Styles.Input
                 type='checkbox'
                 checked={userType === 'student'}
-                onChange={() => setUserType('student')}
+                onChange={e => {
+                  setUserType('student')
+                }}
               />
               <Styles.OptionsText>Admin</Styles.OptionsText>
               <Styles.Input
                 type='checkbox'
                 checked={userType === 'admin'}
-                onChange={() => setUserType('admin')}
+                onChange={e => setUserType('admin')}
               />
             </Styles.CheckBoxContainer>
             <Styles.Button>Sign In</Styles.Button>

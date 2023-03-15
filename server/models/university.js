@@ -22,9 +22,13 @@ const IITM = new University({
   unicity: 'Chennai',
   unistate: 'Tamil Nadu'
 })
-// IITM.save((err) => {
-//     if(err) return handleError(err);
-//     console.log("created a new university.");
+// IITM.save((err, doc) => {
+//   if (err) {
+//     console.log(err)
+//   } else {
+//     console.log(doc)
+//   }
 // })
+
 module.exports = University
 module.exports = UniversitySchema

@@ -1,10 +1,52 @@
 import './navbar.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import Avatar from '../Avatar/Avatar'
-// import CurrUser = require("../../Utils/CurrUser");
-import Button from '@mui/material/Button';
+import Button from '@mui/material/Button'
 
 export default function Navbar () {
+  const navigate = useNavigate()
+
+  const [user, setUser] = useState({
+    firstName: '',
+    avatar: '',
+    isLoggedIn: false
+  })
+
+  function logout() {
+    localStorage.removeItem('token')
+    setUser({
+      firstName: '',
+      avatar: '',
+      isLoggedIn: false
+    })
+    navigate('/login')
+  }
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      axios
+        .get('http://localhost:8080/api/isUserAuth', {
+          headers: {
+            "x-access-token": localStorage.getItem('token')
+          }
+        })
+        .then(res => {
+          const { isLoggedIn, firstName, avatar } = res.data
+          setUser({
+            firstName,
+            avatar,
+            isLoggedIn
+          })
+        })
+        .catch(err => {
+          console.log(err.message)
+        })
+    }
+  }, [])
+
   return (
     <div className='navbar'>
       <div className='navbar-flex-container'>
@@ -13,14 +55,15 @@ export default function Navbar () {
         </div>
         <div className='navbar-flex-item link'>
           <div className='navbar-flex-item auth'>
-            {false ? (
-              {
-                /* <Avatar 
-                        src={CurrUser.avatar}
-                        alt={CurrUser.name}
-                        name={CurrUser.name}
-                    /> */
-              }
+            {user.isLoggedIn ? (
+              
+                 <Avatar 
+                        src={user.avatar}
+                        alt='user'
+                        name={user.firstName}
+                        logout={logout}
+                    /> 
+              
             ) : (
               <Link to='/login'>
                 <Button variant='outlined' size='large'>

@@ -6,6 +6,7 @@ const router = express.Router();
 const {
     getAllStudent,
     postCreateStudent,
+    postCreateAdmin,
     putUpdateStudent,
     deleteStudent,
 } = require("../controller/user");
@@ -26,6 +27,17 @@ const {
  
  router.post("/student", postCreateStudent);
  
+ /**
+  * @route POST api/admin
+  * @description Add a new admin
+  * @access private
+  */
+ 
+ router.post("/admin", postCreateAdmin);
+ 
+
+
+
  /**
   * @route PUT api/student/:id
   * @description update student

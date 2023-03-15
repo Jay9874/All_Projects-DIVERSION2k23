@@ -7,9 +7,9 @@ export default function Projects () {
   return (
     <div className='dash-proj-container'>
       <div className='proj-container'>
-        {data.map(data => {
+        {data.map((data, index) => {
           return (
-            <div className='proj-item'>
+            <div className='proj-item' key={index}>
               <Card
                 title={data.title}
                 image={data.image}
