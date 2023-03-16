@@ -1,19 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.e670f41f.css",
-    "main.js": "/static/js/main.5f401644.js",
-    "static/media/aerospace.jpg": "/static/media/aerospace.aa41c133a808122f8d83.jpg",
-    "static/media/mechanics.jpg": "/static/media/mechanics.b3fbab4e164fb74bd48e.jpg",
-    "static/media/science.jpg": "/static/media/science.5b7bf9097a8ffd241d75.jpg",
-    "static/media/programming.jpg": "/static/media/programming.a776dc50974bf83dcaac.jpg",
-    "static/media/robo.jpg": "/static/media/robo.bb0286f447bf65f5a039.jpg",
-    "static/media/aerodyanamics.jpeg": "/static/media/aerodyanamics.b2f303417b9bf47ed938.jpeg",
+    "main.css": "/static/css/main.6055d139.css",
+    "main.js": "/static/js/main.cf52c517.js",
     "index.html": "/index.html",
-    "main.e670f41f.css.map": "/static/css/main.e670f41f.css.map",
-    "main.5f401644.js.map": "/static/js/main.5f401644.js.map"
+    "main.6055d139.css.map": "/static/css/main.6055d139.css.map",
+    "main.cf52c517.js.map": "/static/js/main.cf52c517.js.map"
   },
   "entrypoints": [
-    "static/css/main.e670f41f.css",
-    "static/js/main.5f401644.js"
+    "static/css/main.6055d139.css",
+    "static/js/main.cf52c517.js"
   ]
 }
