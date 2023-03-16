@@ -38,7 +38,7 @@ function App () {
     <Routes>
       <Route
         exact
-        path='/dashboard'
+        path=''
         element={<Dashboard loggedUser={loggedUser} handleUser={handleUser} />}
       />
       <Route
