@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './avatar.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Avatar ({ src, alt, name, logout }) {
   const [show, setShow] = useState(false)
