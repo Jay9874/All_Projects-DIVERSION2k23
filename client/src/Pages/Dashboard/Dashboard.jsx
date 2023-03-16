@@ -3,14 +3,14 @@ import { useState, useEffect } from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Main from './Main/Main'
-import sidebarLinks from '../../data'
+import {sidebarLinks} from '../../data'
 import axios from 'axios'
 
 export default function Dashboard ({ loggedUser, handleUser }) {
   const [projects, setProjects] = useState([])
   const [view, setView] = useState('all')
   const [loading, setLoading] = useState(true)
-
+  
   function changeView (view) {
     setLoading(true)
     setView(view)

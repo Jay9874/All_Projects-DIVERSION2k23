@@ -3,19 +3,18 @@ const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
 const path = require('path');
-const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
-const { connect } = require('http2');
-const { readdirSync } = require("fs");
 
 // Initializing the express application
 const PORT = process.env.PORT || 8080;
 const app = express();
-app.use(express.json());
+app.use(express.json({limit: '25mb'}));
+// app.use(express.urlencoded({limit: '25mb'}));
+// app.use(express.json());
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({limit: '50mb'}));
+
 app.use(cors());
-const urlEncodedParser = bodyParser.urlencoded({ extended: false });
-app.use(bodyParser.json(), urlEncodedParser);
 
 app.use(express.static(path.join(__dirname, "../client", "build")));
 

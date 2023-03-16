@@ -2,31 +2,31 @@ const sidebarLinks = [
   {
     name: 'All Projects',
     icon: 'flight',
-    field: 'all'
+    view: 'all'
   },
   {
     name: 'AeroDynamics',
     icon: 'flight',
-    field: 'Aerodynamics'
+    view: 'Aerodynamics'
   },
   {
     name: 'Mechanics',
     icon: 'precision_manufacturing',
-    field: 'Mechanics'
+    view: 'Mechanics'
   },
   {
     name: 'Electronics',
     icon: 'precision_manufacturing',
-    field: 'Electronics'
+    view: 'Electronics'
   },
-  { name: 'Robotics', icon: 'smart_toy', field: 'Robotics' },
-  { name: 'Software', icon: 'code', field: 'Software' },
+  { name: 'Robotics', icon: 'smart_toy', view: 'Robotics' },
+  { name: 'Software', icon: 'code', view: 'Software' },
   {
     name: 'AeroSpace',
     icon: 'rocket_launch',
-    field: 'Aerospace'
+    view: 'Aerospace'
   },
-  { name: 'Science', icon: 'biotech', field: 'Science' }
+  { name: 'Science', icon: 'biotech', view: 'Science' }
 ]
 
 const adminSidebarLinks = [

@@ -45,7 +45,7 @@ export default function AdminHome ({ loggedUser }) {
               <Sidebar changeView={changeView} sideLinks={adminSidebarLinks} />
             </div>
             <div className='flex-item main-container admin-main'>
-              <Main view={view} loggedUser={loggedUser} projects={projects} />
+              <Main view={view} loggedUser={loggedUser} projects={projects}  loading={loading}/>
             </div>
           </div>
         </section>
