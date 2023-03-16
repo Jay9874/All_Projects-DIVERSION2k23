@@ -11,7 +11,6 @@ export default function NormalAuth ({ handleUser }) {
   })
   const [error, setError] = useState('')
   const navigate = useNavigate()
-  const [token, setToken] = useState('')
 
   function handleChange (e) {
     const { name, value } = e.target
@@ -57,7 +56,6 @@ export default function NormalAuth ({ handleUser }) {
   }
 
   useEffect(() => {
-    if (token) {
       axios
         .get('http://localhost:8080/api/isUserAuth', {
           headers: {
@@ -78,8 +76,7 @@ export default function NormalAuth ({ handleUser }) {
           console.log(err.message)
           setError('Seems like Credentials mismatched..')
         })
-    }
-  }, [])
+  }, [navigate])
 
   return (
     <Styles.OuterDiv>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './createproject.css'
 import axios from 'axios'
-import MultipleSelectChip from '../MultipleSelect/MultiSelect'
 
 export default function CreateProject ({ loggedUser }) {
   const [university, setUniversity] = useState({})
@@ -36,7 +35,7 @@ export default function CreateProject ({ loggedUser }) {
         setProject({ ...project, university: admin.adminAt._id })
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [loggedUser, project])
 
   const handleChange = e => {
     setProject({ ...project, [e.target.name]: e.target.value })

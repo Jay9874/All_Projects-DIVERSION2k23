@@ -1,7 +1,4 @@
 import './sidebar.css'
-// import DiversionLogo from '../../../assets/diversion.png'
-import { useMediaQuery } from 'react-responsive'
-import { Link } from 'react-router-dom'
 import SideLink from '../SidebarLink/SideLink'
 
 
