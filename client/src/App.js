@@ -11,7 +11,6 @@ function App () {
   const [isLoggedIn, setIsLoggedIn] = useState(null)
 
   function handleUser (user) {
-    console.log(user)
     setLoggedUser(user.userDetail)
     setIsLoggedIn(user.isLoggedIn)
   }

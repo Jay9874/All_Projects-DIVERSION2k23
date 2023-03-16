@@ -4,11 +4,40 @@ const cloudinary = require('../config/cloudinary')
 
 // /////////// Exporting all the controller functions ////////////////
 
-// Get request
+
+
+////////////////////// Get Projects by field///////////////////////
 exports.getAllProject = async (req, res) => {
-  Project.find()
+  const { field } = req.params
+  if (field === 'all') {
+    Project.find()
+      .then(project => {
+        res.json(project)
+      })
+      .catch(err =>
+        res
+          .status(400)
+          .json({ message: 'No Project found!', error: err.message })
+      )
+  } else {
+    Project.find({ field })
+      .then(project => {
+        res.json(project)
+      })
+      .catch(err =>
+        res
+          .status(400)
+          .json({ message: 'No Project found!', error: err.message })
+      )
+  }
+}
+
+//////////////////////Get Projects by university/////////////////////
+exports.getAllProjectByUni = async (req, res) => {
+  const { university } = req.params
+  await Project.find({ university })
     .then(project => {
-      res.json(project)
+      res.status(200).json(project)
     })
     .catch(err =>
       res.status(400).json({ message: 'No Project found!', error: err.message })

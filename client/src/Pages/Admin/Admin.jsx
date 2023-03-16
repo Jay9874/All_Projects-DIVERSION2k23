@@ -3,40 +3,35 @@ import axios from 'axios'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Navbar from '../../Components/Navbar/Navbar'
 import Main from '../Admin/Main/Main'
+import './admin.css'
+import { adminSidebarLinks } from '../../data'
 
 export default function AdminHome ({ loggedUser }) {
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
   const [view, setView] = useState('addProject')
 
   function changeView (currView) {
     setView(currView)
+    setLoading(true)
   }
 
-  const sidebarLinks = [
-    {
-      name: 'Add Project',
-      url: '/admin/newproject',
-      icon: 'flight',
-      view: 'addProject'
-    },
-    {
-      name: 'Add Student',
-      url: '/admin/newstudent',
-      icon: 'flight',
-      view: 'addStudent'
-    },
-    {
-      name: 'This University',
-      url: '/admin/youruniversity',
-      icon: 'flight',
-      view: 'thisUni'
-    },
-    {
-      name: 'All Projects',
-      url: '/admin/all',
-      icon: 'flight',
-      view: 'allProjects'
+  useEffect(() => {
+    const fetchProjects = async view => {
+      setLoading(true)
+      if (view === 'thisUni') {
+        const res = await axios.get(`http://localhost:8080/api/uniproject/${loggedUser.adminAt}`)
+        setProjects(res.data)
+      }else{
+        const res = await axios.get(`http://localhost:8080/api/project/all`)
+        setProjects(res.data)
+      }
+      setLoading(false)
     }
-  ]
+    if (view === 'all' || view === 'thisUni') {
+      fetchProjects(view)
+    }
+  }, [view, loggedUser])
 
   return (
     <div className='dashboard'>
@@ -47,10 +42,10 @@ export default function AdminHome ({ loggedUser }) {
         <section className='main-section'>
           <div className='main-flex-container'>
             <div className='flex-item sidebar-container'>
-              <Sidebar onChange={changeView} sideLinks={sidebarLinks} />
+              <Sidebar changeView={changeView} sideLinks={adminSidebarLinks} />
             </div>
             <div className='flex-item main-container admin-main'>
-              <Main view={view} loggedUser={loggedUser} />
+              <Main view={view} loggedUser={loggedUser} projects={projects} />
             </div>
           </div>
         </section>

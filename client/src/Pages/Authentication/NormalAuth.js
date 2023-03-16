@@ -39,7 +39,6 @@ export default function NormalAuth ({ handleUser }) {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         handleUser(data)
         localStorage.setItem('token', data.token)
         const { userType } = data

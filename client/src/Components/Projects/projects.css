@@ -18,3 +18,14 @@
 .proj-item {
     padding: 0 24px 24px;
 }
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 200;
+    color: #000;
+}

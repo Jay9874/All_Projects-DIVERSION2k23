@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import './sidelink.css'
 
-export default function SideLink ({ onChange, props: { name, link, view } }) {
+export default function SideLink ({ onChange, props: { name, view } }) {
   return (
     <div className='link' onClick={() => onChange(view)}>
       <NavLink className='link-item'>

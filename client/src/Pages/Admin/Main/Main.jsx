@@ -7,30 +7,16 @@ import University from '../../../Components/University/University'
 import Projects from '../../../Components/Projects/Projects'
 import './main.css'
 
-
-export default function Main ({ view, loggedUser}) {
-
+export default function Main ({ view, loggedUser, projects, loading }) {
   return (
     <div className='dash-proj-container'>
       <div className='proj-container'>
         {view === 'addProject' ? (
-          <CreateProject 
-            loggedUser={loggedUser}
-          />
+          <CreateProject loggedUser={loggedUser} />
         ) : view === 'addStudent' ? (
-          <AddStudent 
-            loggedUser={loggedUser}
-          />
-        ) : view === 'thisUni' ? (
-          <University 
-            loggedUser={loggedUser}
-          />
-        ) : view === 'allProjects' ? (
-          <Projects 
-            loggedUser={loggedUser}
-          />
+          <AddStudent loggedUser={loggedUser} />
         ) : (
-          <div>NO VIEW</div>
+          <Projects loggedUser={loggedUser} projects={projects} />
         )}
       </div>
     </div>

@@ -32,7 +32,6 @@ export default function CreateProject ({ loggedUser }) {
       .then(res => {
         const { admin } = res.data
         setMembers(admin.students)
-        console.log(members)
         setUniversity(admin.adminAt)
         setProject({ ...project, university: admin.adminAt._id })
       })

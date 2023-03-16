@@ -53,7 +53,7 @@ exports.postCreateStudent = async (req, res) => {
         .status(400)
         .json({ message: 'Unable to save student to DB', error: err.message })
     }else{
-      Admin.findOne({_id: req.params.id}, (err, foundAdmin) => {
+      Admin.findOne({_id: user.studentOf}, (err, foundAdmin) => {
         if(err){
           res.status(400).json({message: "Unable to process", error: err.message})
         }else if(foundAdmin){
@@ -68,7 +68,6 @@ exports.postCreateStudent = async (req, res) => {
         }
       })
     }
-    res.json({ message: 'Student saved successfully', student })
   })
 }
 

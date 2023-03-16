@@ -5,6 +5,7 @@ const router = express.Router();
 
 const {
     getAllProject,
+    getAllProjectByUni,
     postCreateProject,
     putUpdateProject,
     deleteProject,
@@ -12,11 +13,19 @@ const {
 
 /**
  * @route GET api/project
- * @description get all projects
+ * @description get all projects by field
  * @access public
  */
 
- router.get("/project", getAllProject);
+ router.get("/project/:field", getAllProject);
+
+/**
+ * @route GET api/project
+ * @description get all projects by university
+ * @access public
+ */
+
+ router.get("/uniproject/:university", getAllProjectByUni);
 
  /**
   * @route POST api/project

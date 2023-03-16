@@ -1,24 +1,33 @@
 import React from 'react'
 import './projects.css'
 import Card from '../Card/Card'
-import data from '../Card/data'
 
-export default function Projects () {
+export default function Projects ({ projects, loading }) {
   return (
     <div className='dash-proj-container'>
-      <div className='proj-container'>
-        {data.map((data, index) => {
-          return (
-            <div className='proj-item' key={index}>
-              <Card
-                title={data.title}
-                image={data.image}
-                description={data.description}
-              />
-            </div>
-          )
-        })}
-      </div>
+      {projects.length === 0 ? (
+        <div className='loading'>
+          <h1>Seems like no projects here :(</h1>
+        </div>
+      ) : loading ? (
+        <div className='loading'>
+          <h1>Loading...</h1>
+        </div>
+      ) : (
+        <div className='proj-container'>
+          {projects.map((data, index) => {
+            return (
+              <div className='proj-item' key={index}>
+                <Card
+                  title={data.title}
+                  image={data.image.url}
+                  description={data.summary}
+                />
+              </div>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }

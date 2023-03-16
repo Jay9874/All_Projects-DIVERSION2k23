@@ -69,7 +69,6 @@ exports.loginUser = async (req, res) => {
               process.env.JWT_KEY,
               { expiresIn: 3600 },
               (err, token) => {
-                console.log(token)
                 if (err)
                   return res.json({
                     message: 'Unable to login',

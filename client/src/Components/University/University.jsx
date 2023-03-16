@@ -1,7 +1,7 @@
 import React from 'react'
 import './uni.css'
 import Card from '../Card/Card'
-import data from '../Card/data'
+import data from '../../data'
 import Projects from '../Projects/Projects'
 
 

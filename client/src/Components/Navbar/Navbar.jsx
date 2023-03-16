@@ -35,7 +35,6 @@ export default function Navbar () {
         })
         .then(res => {
           const { isLoggedIn, firstname, avatar } = res.data
-          console.log(res.data);
           setUser({
             firstname,
             avatar,
