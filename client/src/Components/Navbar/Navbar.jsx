@@ -9,7 +9,7 @@ export default function Navbar () {
   const navigate = useNavigate()
 
   const [user, setUser] = useState({
-    firstName: '',
+    firstname: '',
     avatar: '',
     isLoggedIn: false
   })
@@ -34,9 +34,10 @@ export default function Navbar () {
           }
         })
         .then(res => {
-          const { isLoggedIn, firstName, avatar } = res.data
+          const { isLoggedIn, firstname, avatar } = res.data
+          console.log(res.data);
           setUser({
-            firstName,
+            firstname,
             avatar,
             isLoggedIn
           })
@@ -60,7 +61,7 @@ export default function Navbar () {
                  <Avatar 
                         src={user.avatar}
                         alt='user'
-                        name={user.firstName}
+                        name={user.firstname}
                         logout={logout}
                     /> 
               

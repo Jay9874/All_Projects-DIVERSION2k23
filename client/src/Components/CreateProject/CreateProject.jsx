@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './createproject.css'
+import axios from 'axios'
 import MultipleSelectChip from '../MultipleSelect/MultiSelect'
 
-export default function CreateProject () {
+export default function CreateProject ({ loggedUser }) {
+  const [university, setUniversity] = useState({})
+  const [members, setMembers] = useState([])
   const [project, setProject] = React.useState({
     title: '',
     field: '',
     summary: '',
-    members: '',
+    members: [],
     image: '',
-    university: ''
+    university: university._id
   })
 
   const fields = [
@@ -21,20 +24,19 @@ export default function CreateProject () {
     'Aerospace',
     'Science'
   ]
-  const [members, setMembers] = React.useState([])
+  
 
   useEffect(() => {
-    const response = async () => {
-      await fetch('http://localhost:8080/api/user', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    axios
+      .get(`http://localhost:8080/api/admin/${loggedUser._id}`)
+      .then(res => {
+        const { admin } = res.data
+        setMembers(admin.students)
+        console.log(members)
+        setUniversity(admin.adminAt)
+        setProject({ ...project, university: admin.adminAt._id })
       })
-      const data = await response.json()
-      console.log('data: ', data)
-      setMembers(data)
-    }
+      .catch(err => console.log(err))
   }, [])
 
   const handleChange = e => {
@@ -42,6 +44,7 @@ export default function CreateProject () {
   }
 
   const handleSubmit = async e => {
+    console.log(project)
     e.preventDefault()
     const response = await fetch('http://localhost:8080/api/project', {
       method: 'POST',
@@ -51,8 +54,21 @@ export default function CreateProject () {
       body: JSON.stringify(project)
     })
     const data = await response.json()
-    console.log('data: ', data)
+    alert(data.message)
+    setProject({})
   }
+
+  const handleImage = e => {
+    const file = e.target.files[0]
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      setProject({ ...project, image: reader.result })
+    }
+  }
+
+
+
 
   return (
     <div className='create-project'>
@@ -106,10 +122,10 @@ export default function CreateProject () {
             className='form-control'
             id='projectImage'
             placeholder='Project Image'
-            onChange={handleChange}
+            onChange={handleImage}
           />
         </div>
-              {/* <MultipleSelectChip />   */}
+        {/* <MultipleSelectChip />   */}
         <div className='form-group team-select-container'>
           <label htmlFor='projectTeam'>Project Team</label>
           <select
@@ -119,23 +135,26 @@ export default function CreateProject () {
             onChange={handleChange}
             multiple
           >
-            <option value='1'>Jay</option>
-            <option value='2'>Shubham</option>
-            <option value='3'>Kirti</option>
-            <option value='4'>Rashi</option>
-            <option value='5'>Rishi</option>
+            {members.map((member, indx) => {
+              return (
+                <option key={indx} value={member._id}>
+                  {member.firstname + ' ' + member.lastname}
+                </option>
+              )
+            })}
           </select>
         </div>
         <div className='form-group'>
-          <label htmlFor='projectTeam'>University Name</label>
-          <input
+          <label htmlFor='projectTeam'>University</label>
+          <p>{university.uniname}, {university.unicity}</p>
+          {/* <input
             name='university'
             type='text'
             className='form-control'
             id='projectTeam'
             placeholder='University Name'
             onChange={handleChange}
-          />
+          /> */}
         </div>
         <button type='submit' className='btn btn-primary'>
           Submit

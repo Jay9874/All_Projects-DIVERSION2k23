@@ -18,33 +18,43 @@ exports.getAllProject = async (req, res) => {
 // Post request
 exports.postCreateProject = async (req, res) => {
   console.log('body: ', req.body)
-  const { title, field, summary, members, image, university } =
-    req.body
-
+  const { title, field, summary, members, image, university } = req.body
+  console.log('image: ', image)
   try {
-    // const result = await cloudinary.uploader.upload(image, {
-    //   folder: 'projects',
-    //   width: 400,
-    //   crop: 'scale'
-    // })
-    const project = await Project.create({
+    const result = await cloudinary.uploader.upload(image, {
+      folder: 'projects',
+      width: 400,
+      crop: 'scale'
+    })
+    console.log('result: ', result)
+    const newProject = new Project({
       title,
       field,
       summary,
       members,
-      image,
-      // image: {
-      //   public_id: result.public_id,
-      //   url: result.secure_url
-      // },
+      image: {
+        url: result.secure_url,
+        public_id: result.public_id
+      },
       university
     })
-    res.status(200).json({
-      success: 'true',
-      message: 'Project added!'
-    })
+    newProject
+      .save()
+      .then(project => {
+        console.log('project: ', project)
+        res.status(200).json({ message: 'Project added successfully', project })
+      })
+      .catch(err => {
+        console.log(err)
+        res
+          .status(400)
+          .json({ message: 'Unable to add project', error: err.message })
+      })
   } catch (err) {
-    console.log('Unable to process, error', err.message)
+    console.log(err)
+    res
+      .status(400)
+      .json({ message: 'Unable to add project', error: err.message })
   }
 }
 // Put request

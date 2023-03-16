@@ -12,7 +12,7 @@ export default function Avatar ({ src, alt, name, logout }) {
   return (
     <div>
       <div className='avatar' onClick={showDropDown}>
-        <img src={src} alt={alt} title={name} />
+        <img src={src} alt={alt}/>
         <span>{name}</span>
       </div>
       {show && (

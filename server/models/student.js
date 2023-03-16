@@ -1,15 +1,13 @@
 const mongoose = require('mongoose')
 const encrypt = require('mongoose-encryption')
-
-
 const secret = process.env.ENCRYPTION_KEY
 
 const StudentSchema = mongoose.Schema({
-  first_name: {
+  firstname: {
     type: String,
     required: [true, 'First Name is required']
   },
-  last_name: {
+  lastname: {
     type: String,
     required: [true, 'Last Name is required']
   },

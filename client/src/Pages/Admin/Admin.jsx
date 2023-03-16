@@ -5,21 +5,11 @@ import Navbar from '../../Components/Navbar/Navbar'
 import Main from '../Admin/Main/Main'
 
 export default function AdminHome ({ loggedUser }) {
-  const [fellows, setFellows] = useState([])
-  const [user, setUser] = useState(loggedUser)
-  const [uni, setUni] = useState({})
-
   const [view, setView] = useState('addProject')
 
   function changeView (currView) {
     setView(currView)
   }
-
-  const queryBody = {
-    userType: 'admin',
-    userId: loggedUser
-  }
-
 
   const sidebarLinks = [
     {
@@ -60,7 +50,7 @@ export default function AdminHome ({ loggedUser }) {
               <Sidebar onChange={changeView} sideLinks={sidebarLinks} />
             </div>
             <div className='flex-item main-container admin-main'>
-              <Main view={view} fellows={fellows} uni={uni} />
+              <Main view={view} loggedUser={loggedUser} />
             </div>
           </div>
         </section>

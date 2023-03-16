@@ -20,7 +20,8 @@ exports.loginUser = async (req, res) => {
             const payload = {
               id: foundUser._id,
               email: foundUser.email,
-              userType: 'admin'
+              userType: 'admin',
+              firstname: foundUser.firstname
             }
             jwt.sign(
               payload,
@@ -37,6 +38,7 @@ exports.loginUser = async (req, res) => {
                   token: 'Bearer ' + token,
                   userType: 'admin',
                   userId: foundUser._id,
+                  userFirstName: foundUser.firstname,
                   userDetail: foundUser,
                   isLoggedIn: true
                 })
@@ -59,7 +61,8 @@ exports.loginUser = async (req, res) => {
             const payload = {
               id: foundUser._id,
               email: foundUser.email,
-              userType: 'admin'
+              userType: 'admin',
+              firstname: foundUser.firstname
             }
             jwt.sign(
               payload,
@@ -77,6 +80,7 @@ exports.loginUser = async (req, res) => {
                   token: 'Bearer ' + token,
                   userType: 'student',
                   userId: foundUser._id,
+                  userFirstName: foundUser.firstname,
                   userDetail: foundUser,
                   isLoggedIn: true
                 })
@@ -99,6 +103,7 @@ exports.verifyJWT = (req, res, next) => {
     return res.status(403).json({
       isLoggedIn: false,
       message: 'No token provided'
+
     })
   }
   jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
@@ -109,6 +114,7 @@ exports.verifyJWT = (req, res, next) => {
       })
     }
     req.userId = decoded.id
+    req.firstname = decoded.firstname
     next()
   })
 }

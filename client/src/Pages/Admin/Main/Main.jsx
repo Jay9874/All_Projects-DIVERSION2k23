@@ -8,30 +8,27 @@ import Projects from '../../../Components/Projects/Projects'
 import './main.css'
 
 
-export default function Main ({ view }) {
-  const [Data, setData] = useState([])
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await axios.get(`http://localhost/api/users`)
-  //     const newData = await response.json()
-  //     setData(newData)
-  //   }
-
-  //   fetchData()
-  // }, [])
+export default function Main ({ view, loggedUser}) {
 
   return (
     <div className='dash-proj-container'>
       <div className='proj-container'>
         {view === 'addProject' ? (
-          <CreateProject />
+          <CreateProject 
+            loggedUser={loggedUser}
+          />
         ) : view === 'addStudent' ? (
-          <AddStudent />
+          <AddStudent 
+            loggedUser={loggedUser}
+          />
         ) : view === 'thisUni' ? (
-          <University />
+          <University 
+            loggedUser={loggedUser}
+          />
         ) : view === 'allProjects' ? (
-          <Projects />
+          <Projects 
+            loggedUser={loggedUser}
+          />
         ) : (
           <div>NO VIEW</div>
         )}

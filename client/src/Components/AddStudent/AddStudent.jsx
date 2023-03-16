@@ -2,16 +2,15 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import './addstu.css'
 
-export default function AddStudent () {
-  const [user, setUser] = useState({})
+export default function AddStudent ({ loggedUser }) {
   const [student, setStudent] = useState({
-    first_name: '',
-    last_name: '',
+    firstname: '',
+    lastname: '',
     username: '',
     email: '',
     password: '',
-    studentOf: '',
-    studentAt: ''
+    studentOf: loggedUser._id,
+    studentAt: loggedUser.adminAt
   })
 
   function handleChange (e) {
@@ -26,30 +25,15 @@ export default function AddStudent () {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const response = await axios.post(
-      'http://localhost:8080/api/student',
-      student
-    )
-    console.log(response)
+    await axios
+      .post('http://localhost:8080/api/student', student)
+      .then(res => {
+        alert(res.data.message)
+      })
+      .catch(err => {
+        alert(err.response.data.message)
+      })
   }
-
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      axios
-        .get('http://localhost:8080/api/isUserAuth', {
-          headers: {
-            'x-access-token': token
-          }
-        })
-        .then(res => {
-          const { isLoggedIn, firstName, avatar } = res.data
-        })
-        .catch(err => {
-          console.log(err.message)
-        })
-    }
-  }, [])
 
   return (
     <div className='addstudent-container'>
@@ -62,7 +46,7 @@ export default function AddStudent () {
               type='text'
               className='form-control'
               id='studentFirstName'
-              name='first_name'
+              name='firstname'
               value={student.firstname}
               placeholder='First Name'
               onChange={handleChange}
@@ -76,7 +60,7 @@ export default function AddStudent () {
               type='text'
               className='form-control'
               id='studentLastName'
-              name='last_name'
+              name='lastname'
               value={student.lastname}
               placeholder='Last Name'
               onChange={handleChange}

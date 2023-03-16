@@ -33,7 +33,6 @@ const ProjectSchema = new mongoose.Schema({
       type: String,
       required: ['true', 'No url provided']
     },
-    required: ['true', 'Please add a image']
   },
   university: {
     type: mongoose.Schema.Types.ObjectId,

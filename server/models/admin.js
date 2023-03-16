@@ -1,7 +1,6 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
 const encrypt = require('mongoose-encryption')
-
 const secret = process.env.ENCRYPTION_KEY
 
 const AdminSchema = new mongoose.Schema({
@@ -44,10 +43,8 @@ const AdminSchema = new mongoose.Schema({
   }
 }, { timestamps: true })
 
-// AdminSchema.plugin(encrypt, {
-//   secret: secret,
-//   encryptedFields: ['password']
-// })
+AdminSchema.plugin(encrypt, { secret: secret, encryptedFields: ['password'] })
 
-module.exports = mongoose.model('Admin', AdminSchema)
+const Admin = mongoose.model('Admin', AdminSchema)
+module.exports = Admin
 

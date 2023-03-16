@@ -9,6 +9,7 @@ const {
     postCreateAdmin,
     putUpdateStudent,
     deleteStudent,
+    getAdmin
 } = require("../controller/user");
 
 /**
@@ -18,6 +19,13 @@ const {
  */
 
  router.get("/student", getAllStudent);
+/**
+ * @route GET api/admin
+ * @description get admin details
+ * @access private
+ */
+
+ router.get("/admin/:id", getAdmin);
 
  /**
   * @route POST api/student
