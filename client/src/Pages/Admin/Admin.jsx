@@ -20,10 +20,10 @@ export default function AdminHome ({ loggedUser }) {
     const fetchProjects = async view => {
       setLoading(true)
       if (view === 'thisUni') {
-        const res = await axios.get(`http://localhost:8080/api/uniproject/${loggedUser.adminAt}`)
+        const res = await axios.get(`/api/uniproject/${loggedUser.adminAt}`)
         setProjects(res.data)
       }else{
-        const res = await axios.get(`http://localhost:8080/api/project/all`)
+        const res = await axios.get(`/api/project/all`)
         setProjects(res.data)
       }
       setLoading(false)

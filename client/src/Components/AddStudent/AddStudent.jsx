@@ -26,7 +26,7 @@ export default function AddStudent ({ loggedUser }) {
   const handleSubmit = async e => {
     e.preventDefault()
     await axios
-      .post('http://localhost:8080/api/student', student)
+      .post('/api/student', student)
       .then(res => {
         alert(res.data.message)
       })

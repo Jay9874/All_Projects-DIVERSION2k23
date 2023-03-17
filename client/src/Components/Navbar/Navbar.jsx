@@ -28,7 +28,7 @@ export default function Navbar () {
     const token = localStorage.getItem('token')
     if (token) {
       axios
-        .get('http://localhost:8080/api/isUserAuth', {
+        .get('/api/isUserAuth', {
           headers: {
             "x-access-token": localStorage.getItem('token')
           }

@@ -19,7 +19,7 @@ export default function Dashboard ({ loggedUser, handleUser }) {
   useEffect(() => {
     const fetchProjects = async () => {
       setLoading(true)
-      const res = await axios.get(`http://localhost:8080/api/project/${view}`)
+      const res = await axios.get(`/api/project/${view}`)
       setProjects(res.data)
       setLoading(false)
     }

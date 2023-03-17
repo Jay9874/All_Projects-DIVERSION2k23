@@ -29,7 +29,7 @@ export default function NormalAuth ({ handleUser }) {
       password: user.password,
       userType: userType
     }
-    fetch('http://localhost:8080/api/login', {
+    fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ export default function NormalAuth ({ handleUser }) {
 
   useEffect(() => {
       axios
-        .get('http://localhost:8080/api/isUserAuth', {
+        .get('/api/isUserAuth', {
           headers: {
             'x-access-token': localStorage.getItem('token')
           }

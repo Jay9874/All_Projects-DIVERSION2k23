@@ -27,7 +27,7 @@ export default function CreateProject ({ loggedUser }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/admin/${loggedUser._id}`)
+      .get(`/api/admin/${loggedUser._id}`)
       .then(res => {
         const { admin } = res.data
         setMembers(admin.students)
@@ -44,7 +44,7 @@ export default function CreateProject ({ loggedUser }) {
   const handleSubmit = async e => {
     console.log(project)
     e.preventDefault()
-    const response = await fetch('http://localhost:8080/api/project', {
+    const response = await fetch('/api/project', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
