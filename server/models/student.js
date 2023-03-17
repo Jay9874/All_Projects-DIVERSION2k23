@@ -1,3 +1,4 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
 const encrypt = require('mongoose-encryption')
 const secret = process.env.ENCRYPTION_KEY
@@ -42,7 +43,7 @@ const StudentSchema = mongoose.Schema({
     required: [true, 'Please add a university']
   }
 }, { timestamps: true })
-
+console.log(secret)
 StudentSchema.plugin(encrypt, { secret: secret, encryptedFields: ['password'] })
 
 const Student = mongoose.model('Student', StudentSchema)

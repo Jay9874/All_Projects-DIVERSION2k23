@@ -42,7 +42,7 @@ const AdminSchema = new mongoose.Schema({
     required: ['true', 'Please add a university']
   }
 }, { timestamps: true })
-
+console.log(secret)
 AdminSchema.plugin(encrypt, { secret: secret, encryptedFields: ['password'] })
 
 const Admin = mongoose.model('Admin', AdminSchema)

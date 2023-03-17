@@ -67,7 +67,7 @@ export default function NormalAuth ({ handleUser }) {
           if (userType === 'admin') {
             navigate('/admin')
           } else if (userType === 'student') {
-            navigate('/dashboard')
+            navigate('/')
           } else {
             setError('Seems like Credentials mismatched..')
           }
