@@ -56,27 +56,29 @@ export default function NormalAuth ({ handleUser }) {
   }
 
   useEffect(() => {
-      axios
-        .get('/api/isUserAuth', {
-          headers: {
-            'x-access-token': localStorage.getItem('token')
-          }
-        })
-        .then(res => {
-          const { userType } = res.data
-          if (userType === 'admin') {
-            navigate('/admin')
-          } else if (userType === 'student') {
-            navigate('/')
-          } else {
-            setError('Seems like Credentials mismatched..')
-          }
-        })
-        .catch(err => {
-          console.log(err.message)
+    axios
+      .get('/api/isUserAuth', {
+        headers: {
+          'x-access-token': localStorage.getItem('token')
+        }
+      })
+      .then(res => {
+        console.log(res)
+        const { userType } = res.data
+        handleUser(res.data)
+        if (userType === 'admin') {
+          navigate('/admin')
+        } else if (userType === 'student') {
+          navigate('/')
+        } else {
           setError('Seems like Credentials mismatched..')
-        })
-  }, [navigate])
+        }
+      })
+      .catch(err => {
+        console.log(err.message)
+        setError('Seems like Credentials mismatched..')
+      })
+  }, [])
 
   return (
     <Styles.OuterDiv>

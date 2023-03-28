@@ -43,7 +43,7 @@ const StudentSchema = mongoose.Schema({
     required: [true, 'Please add a university']
   }
 }, { timestamps: true })
-console.log(secret)
+// console.log(secret)
 StudentSchema.plugin(encrypt, { secret: secret, encryptedFields: ['password'] })
 
 const Student = mongoose.model('Student', StudentSchema)

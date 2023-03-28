@@ -61,7 +61,7 @@ exports.loginUser = async (req, res) => {
             const payload = {
               id: foundUser._id,
               email: foundUser.email,
-              userType: 'admin',
+              userType: 'student',
               firstname: foundUser.firstname
             }
             jwt.sign(
@@ -114,6 +114,7 @@ exports.verifyJWT = (req, res, next) => {
     }
     req.userId = decoded.id
     req.firstname = decoded.firstname
+    req.userType = decoded.userType
     next()
   })
 }
