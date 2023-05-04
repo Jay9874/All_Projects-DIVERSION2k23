@@ -38,6 +38,7 @@ export default function NormalAuth ({ handleUser }) {
     })
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         handleUser(data)
         localStorage.setItem('token', data.token)
         const { userType } = data
@@ -71,14 +72,14 @@ export default function NormalAuth ({ handleUser }) {
         } else if (userType === 'student') {
           navigate('/')
         } else {
-          setError('Seems like Credentials mismatched..')
+          setError('Something went wrong...')
         }
       })
       .catch(err => {
         console.log(err.message)
-        setError('Seems like Credentials mismatched..')
+        setError('Something went wrong..')
       })
-  }, )
+  } )
 
   return (
     <Styles.OuterDiv>

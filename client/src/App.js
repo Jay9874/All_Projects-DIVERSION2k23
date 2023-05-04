@@ -7,11 +7,14 @@ import Protected from './utils/Protected'
 
 function App () {
   const [loggedUserId, setLoggedUserId] = useState(null)
-  const [isLoggedIn, setIsLoggedIn] = useState(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [loggedUser, setLoggedUser] = useState({})
 
   function handleUser (user) {
-    setLoggedUserId(user.userDetail)
-    setIsLoggedIn(user.isLoggedIn)
+    setLoggedUserId(user.userId)
+    if(user.userType !== '')
+    setIsLoggedIn(true)
+    setLoggedUser(user)
   }
 
   return (
@@ -26,7 +29,7 @@ function App () {
         path='/admin'
         element={
           <Protected isLoggedIn={isLoggedIn}>
-            <Admin loggedUserId={loggedUserId} />
+            <Admin loggedUserId={loggedUserId} loggedUser={loggedUser} />
           </Protected>
         }
       />

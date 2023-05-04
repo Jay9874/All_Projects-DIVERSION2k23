@@ -27,7 +27,7 @@ export default function CreateProject ({ loggedUser }) {
 
   useEffect(() => {
     axios
-      .get(`/api/admin/${loggedUser._id}`)
+      .get(`/api/admin/${loggedUser.userId}`)
       .then(res => {
         const { admin } = res.data
         setMembers(admin.students)
