@@ -78,7 +78,7 @@ export default function NormalAuth ({ handleUser }) {
         console.log(err.message)
         setError('Seems like Credentials mismatched..')
       })
-  }, [])
+  }, )
 
   return (
     <Styles.OuterDiv>
