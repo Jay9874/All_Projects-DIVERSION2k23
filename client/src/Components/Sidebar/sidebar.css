@@ -1,6 +1,6 @@
 /* Google Fonts Import Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
+/* 
 
 .sidebar {
     width: 100%;
@@ -11,16 +11,29 @@
 }
 
 .sidebar-flex-container {
-    
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    column-gap: 40px;
 }
 
 .sidebar-item {
     height: 100%;
     padding-top: 8px;
+} */
+
+.sidebar-flex-container{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+@media screen and (max-width: 780px){
+    .sidebar-item{
+        display: flex;
+        gap: 20px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
 }

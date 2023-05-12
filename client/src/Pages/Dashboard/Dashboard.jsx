@@ -34,10 +34,10 @@ export default function Dashboard ({ loggedUser, handleUser }) {
         </section>
         <section className='main-section'>
           <div className='main-flex-container'>
-            <div className='flex-item sidebar-container'>
+            <div className='main-flex-item sidebar-container'>
               <Sidebar changeView={changeView} sideLinks={sidebarLinks} />
             </div>
-            <div className='flex-item main-container'>
+            <div className='main-flex-item main-container'>
                 <Main projects={projects} loading={loading} />
             </div>
           </div>

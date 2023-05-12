@@ -1,33 +1,13 @@
-.dashboard {
-    margin: 0;
-    padding: 0;
+.nav-section{
     width: 100%;
-    height: 100%;
 }
-
-.main-flex-container {
-    display: flex;
-    flex-direction: row;
-}
-
-.nav-section {
-    height: 80px;
-}
-.sidebar-container {
-    width: 240px;
-    height: calc(100vh - 180px);
-}
-
-.main-container {
+.main-section{
     width: 100%;
-    height: calc(100vh - 180px);
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 
-.main-section {
-    margin-top: 110px;
-    width: 100%;
-    height: calc(100vh - 180px);
+.main-container{
+    height: calc(100vh - 174px);
+}
+.main-flex-container{
+    padding: 10px 0 0;
 }

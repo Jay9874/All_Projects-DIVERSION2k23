@@ -14,7 +14,7 @@ export default function Navbar () {
     isLoggedIn: false
   })
 
-  function logout() {
+  function logout () {
     localStorage.removeItem('token')
     setUser({
       firstName: '',
@@ -23,14 +23,14 @@ export default function Navbar () {
     })
     navigate('/login')
   }
-  
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       axios
         .get('/api/isUserAuth', {
           headers: {
-            "x-access-token": localStorage.getItem('token')
+            'x-access-token': localStorage.getItem('token')
           }
         })
         .then(res => {
@@ -48,30 +48,26 @@ export default function Navbar () {
   }, [])
 
   return (
-    <div className='navbar'>
-      <div className='navbar-flex-container'>
-        <div className='navbar-flex-item brand'>
-          <h3>All_Projects</h3>
-        </div>
-        <div className='navbar-flex-item link'>
-          <div className='navbar-flex-item auth'>
-            {user.isLoggedIn ? (
-              
-                 <Avatar 
-                        src={user.avatar}
-                        alt='user'
-                        name={user.firstname}
-                        logout={logout}
-                    /> 
-              
-            ) : (
-              <Link to='/login'>
-                <Button variant='outlined' size='large'>
-                  Login
-                </Button>
-              </Link>
-            )}
-          </div>
+    <div className='navbar-flex-container'>
+      <div className='navbar-flex-item brand'>
+        <h3>All_Projects</h3>
+      </div>
+      <div className='navbar-flex-item link'>
+        <div className='navbar-flex-item auth'>
+          {user.isLoggedIn ? (
+            <Avatar
+              src={user.avatar}
+              alt='user'
+              name={user.firstname}
+              logout={logout}
+            />
+          ) : (
+            <Link to='/login'>
+              <Button variant='outlined' size='large'>
+                Login
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

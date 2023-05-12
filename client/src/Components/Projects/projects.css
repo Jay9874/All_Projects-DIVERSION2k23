@@ -1,10 +1,10 @@
 .dash-proj-container {
     height: 100%;
     width: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
     background-color: rgb(231, 235, 240);
     border-top-left-radius: 15px;
-    margin-left: 30px;
+    border-top-right-radius: 15px;
 }
 .proj-container{
     display: flex;

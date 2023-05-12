@@ -1,6 +1,7 @@
 .link{
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
+    flex: 0 0 auto;
 }
 
 .link-inactive:hover {
